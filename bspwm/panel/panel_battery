@@ -1,0 +1,20 @@
+#!/bin/bash
+
+source $(dirname $0)/config
+
+BAT=`acpi -b | awk '{gsub(/%,/,""); print $4}' | sed 's/%//g'`
+STATUS=`acpi -b | awk '{gsub(/,/,""); print $3}'`
+TIME=`acpi -b | awk '{gsub(/,/,""); print $5}'`
+
+icon=""
+if [ $STATUS != "Discharging" ]; then
+  output="%{F$ICON_COL}$(printf '%b' "\ue041")";
+elif [ $BAT -lt 70 ]; then
+  output="%{F$ICON_COL}$(printf '%b' "\ue251") %{F-}$BAT $TIME";
+elif [ $BAT -lt 40 ]; then
+  output="%{F$ICON_COL}$(printf '%b' "\ue250") %{F-}$BAT $TIME";
+else
+  output="%{F$ICON_COL}$(printf '%b' "\ue254") %{F-}$BAT $TIME";
+fi
+
+echo $output $DIV;

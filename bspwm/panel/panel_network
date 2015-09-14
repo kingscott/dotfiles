@@ -1,0 +1,13 @@
+#!/bin/bash
+
+source $(dirname $0)/config
+
+QUAL=`iwconfig wlp3s0 | grep 'Link Quality=' | awk '{gsub(/[=/]/," "); print $3}'`
+MAX=`iwconfig wlp3s0 | grep 'Link Quality=' | awk '{gsub(/[=/]/," "); print $4}'`
+PERC=`echo $QUAL*100/$MAX | bc`
+ESSID=`iwconfig wlp3s0 2> /dev/null | awk -F\" '{print $2}' `
+
+icon="$(printf '%b' "\ue25c")"
+output="%{F$ICON_COL}$icon %{F-}$ESSID $PERC"
+
+echo $output $DIV;

@@ -1,0 +1,31 @@
+# Fonts to be used
+MAINFONT="Fira Mono-9"
+FONTICONS="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
+
+# Background colour of lemonbar
+BACKGROUND_COL="#21252B"
+FOREGROUND_COL="#DCDCDC"
+ICON_COL="#B6A899"
+ACTIVE_COL="#DCDCDC"
+OCCUPIED_COL="#868686"
+URGENT_COL="#AA0000"
+
+# Dimensions of lemonbar
+PANEL_HEIGHT=18
+PANEL_WIDTH=1325
+PANEL_GEOMETRY="${PANEL_WIDTH}x${PANEL_HEIGHT}+20x0"
+
+LINEHEIGHT="3"
+
+# Feh command
+FEH="$(feh --bg-scale ~/Pictures/satellite.jpg)"
+
+MONITOR="$(bspc query -M -m | tail -n1)"
+
+function F {
+        echo -n "%{F#ff$2}$1%{F-}"
+}
+
+GREEN=8c9440
+GRAY=404040
+DIV=$(F '|' $GRAY)
